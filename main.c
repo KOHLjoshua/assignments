@@ -1,3 +1,11 @@
+/*
+Hello There 
+This code is developed to respond to the DSA assignments request by Mr.Dallington.
+Hope you have fun contributing to this code.
+
+Happy Hunting.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
