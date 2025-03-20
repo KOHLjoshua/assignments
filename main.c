@@ -12,7 +12,7 @@ Happy Hunting.
 int main()
 {
     int n=3,x=2;
-    char* dom[n][50 ];
+    char* dom[n][50];
     char* wild[x][50];
     char* merged[n+x];
     for(int i=0;i<n;i++){
@@ -34,11 +34,12 @@ return 0;
 }
 
 
-    /*int ass, coursework, midterm, endofterm;
-    double average;
-    printf("\physics detail\n");
-    printf("enter marks for ass; ");
-    scanf("%d",&ass);
+    /*int assignment, coursework, midterm, endofterm;
+    double average1, average2, average3;
+    double overall_average;
+    printf("\tphysics detail\n");
+    printf("enter marks for assignment; ");
+    scanf("%d",&assignment);
     printf("enter marks for coursework; ");
     scanf("%d",&coursework);
     printf("enter marks for midterm; ");
@@ -46,14 +47,14 @@ return 0;
     printf("enter marks for endterm; ");
     scanf("%d",&endofterm);
 
-     average = (ass+coursework+midterm+endofterm)/4;
-     printf("the average is %2lf\n=====================",average);
+     average1 = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n",average1);
 
 
 
-     printf("===\nchemistry detail\n");
-    printf("enter marks for ass; ");
-    scanf("%d",&ass);
+     printf("\t\nchemistry detail\n");
+    printf("enter marks for assignment; ");
+    scanf("%d",&assignment);
     printf("enter marks for coursework; ");
     scanf("%d",&coursework);
     printf("enter marks for midterm; ");
@@ -61,12 +62,12 @@ return 0;
     printf("enter marks for endterm; ");
     scanf("%d",&endofterm);
 
-     average = (ass+coursework+midterm+endofterm)/4;
-     printf("the average is %2lf\n=============",average);
+     average2 = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n",average2);
 
-      printf("\nmathematics detail\n");
-    printf("enter marks for ass; ");
-    scanf("%d",&ass);
+      printf("\t\nmathematics detail\n");
+    printf("enter marks for assignment; ");
+    scanf("%d",&assignment);
     printf("enter marks for coursework; ");
     scanf("%d",&coursework);
     printf("enter marks for midterm; ");
@@ -74,7 +75,12 @@ return 0;
     printf("enter marks for endterm; ");
     scanf("%d",&endofterm);
 
-     average = (ass+coursework+midterm+endofterm)/4;
-     printf("the average is %2lf\n=============",average);
+     average3 = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n",average3);
+
+     overall_average = (average1 + average2 + average3)/3;
+     printf("\n The overall average for PCM is %2lf",overall_average);
+
+     return 0;
 }
 */
