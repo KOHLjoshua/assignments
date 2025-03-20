@@ -31,12 +31,48 @@ int main()
     printf("All the animals merged; %s\n", result);
 
     return 0;
+
+    /*int ass, coursework, midterm, endofterm;
+    double average;
+    printf("\physics detail\n");
+    printf("enter marks for ass; ");
+    scanf("%d",&ass);
+    printf("enter marks for coursework; ");
+    scanf("%d",&coursework);
+    printf("enter marks for midterm; ");
+    scanf("%d",&midterm);
+    printf("enter marks for endterm; ");
+    scanf("%d",&endofterm);
+
+     average = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n=====================",average);
+
+
+
+     printf("\nchemistry detail\n");
+    printf("enter marks for ass; ");
+    scanf("%d",&ass);
+    printf("enter marks for coursework; ");
+    scanf("%d",&coursework);
+    printf("enter marks for midterm; ");
+    scanf("%d",&midterm);
+    printf("enter marks for endterm; ");
+    scanf("%d",&endofterm);
+
+     average = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n=============",average);
+
+      printf("\nmathematics detail\n");
+    printf("enter marks for ass; ");
+    scanf("%d",&ass);
+    printf("enter marks for coursework; ");
+    scanf("%d",&coursework);
+    printf("enter marks for midterm; ");
+    scanf("%d",&midterm);
+    printf("enter marks for endterm; ");
+    scanf("%d",&endofterm);
+
+     average = (ass+coursework+midterm+endofterm)/4;
+     printf("the average is %2lf\n=============",average);
 }
-
-
-/*for (int i; i<4; i++){
-int math}
-printf("Please insert the marks")
-int marks[3]={scanf("%d", &math),};
-int average= (math+)/3;
-printf average(%d, average);
+*/
