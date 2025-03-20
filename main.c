@@ -1,36 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_ANIMALS 3
-#define MAX_LENGTH 100
+#define NUM_ANIMALS 10
+
 
 int main()
 {
-    char wild_animals[][];
-    char domestic_animals[][];
-    char result[][] = "";
+    int n,k;
+    char wild_animals[n];
+    char domestic_animals[k];
+    char result[n+k];
 
-    printf("Enter %d wild animals", NUM_ANIMALS);
-    for(int i= 0; i < NUM_ANIMALS; i++){
+    printf("Enter %d wild animals\n", n);
+    if(n>NUM_ANIMALS){
+        printf("choose a number less than 10\n");
+    }else{
+
+    for(int i= 0; i < n; i++){
+        printf("Wild animal %d:\n ", i + 1);
+        scanf("%s", wild_animals[i]);
+    }
+    }
+    printf("Enter %d wild animals", k);
+    if(k>NUM_ANIMALS){
+            printf("Please enter a number less than 10\n");
+
+    }else{
+    for(int i= 0; i < k; i++){
         printf("Wild animal %d: ", i + 1);
-        scanf("%s", wild animals[i]);
+        scanf("%s", wild_animals[i]);
     }
-    printf("Enter %d wild animals", NUM_ANIMALS);
-    for(int i= 0; i < NUM_ANIMALS; i++){
-        printf("Wild animal %d: ", i + 1);
-        scanf("%s", wild animals[i]);
     }
 
-    for (int i = 0; i < NUM_ANIMALS; i++){
-        strcat(result, wild_animals[i]);
-        strcat(result, "");
-        strcat(result, domestic_animals[i]);
-        strcat(result, "");
-    }
+for(int i = 0;i<n;i++){
+    wild_animals[i] = result[i];
 
-    printf("All the animals merged; %s\n", result);
+}
+for(int i = 0;i<k;i++){
+    domestic_animals[i] = result[n + i];
+
+}
+for(int i = 0; i < k+n; i++){
+    printf("The weird animals that want merging are; %s", result[i]);
+}
+
 
     return 0;
+}
+
 
     /*int ass, coursework, midterm, endofterm;
     double average;
