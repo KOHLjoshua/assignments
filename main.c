@@ -43,7 +43,7 @@ return 0;
 
 
 
-     printf("\nchemistry detail\n");
+     printf("===\nchemistry detail\n");
     printf("enter marks for ass; ");
     scanf("%d",&ass);
     printf("enter marks for coursework; ");
