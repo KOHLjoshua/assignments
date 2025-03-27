@@ -35,7 +35,6 @@ int main() {
 char* exams[4] = {"assignments", "coursework", "midTerm", "EndOfTerm"};
 float Get_averagePhysics(){
     float physics[4];
-
     float sum = 0;
     printf("\t PHYSICS MARKS\n");
 for (int i=0;i<4;i++){
@@ -44,7 +43,6 @@ for (int i=0;i<4;i++){
         scanf("%f",&physics[i]);
             if (physics[i]<0 || physics[i]>100){
                 printf("Invalid input.Please enter marks within range(0-100)  \n");
-
             }else{
                 break;
             }
@@ -55,10 +53,9 @@ for (int i=0;i<4;i++){
     }
     return sum/4;
 }
+
 float Get_averageChemistry(){
     float chemistry[4];
-
-
     float sum = 0;
     printf("\n\t CHEMISTRY MARKS \n");
 for (int i=0;i<4;i++){
@@ -66,7 +63,6 @@ for (int i=0;i<4;i++){
         printf("%s: ",exams[i]);
         scanf("%f",&chemistry[i]);
         if (chemistry[i]<0|| chemistry[i]>100){
-
                 printf("Invalid input.Please marks within range(0-100)\n");
             }else{
                 break;
@@ -78,10 +74,9 @@ for (int i=0;i<4;i++){
     }
     return sum/4;
 }
+
 float Get_averageMathematics(){
     float mathematics[4];
-
-
     float sum = 0;
     printf("\n\t MATHEMATICS MARKS \n");
 for (int i=0;i<4;i++){
@@ -89,7 +84,6 @@ for (int i=0;i<4;i++){
         printf("%s: ",exams[i]);
         scanf("%f",&mathematics[i]);
         if (mathematics[i]<0|| mathematics[i]>100){
-
                 printf("Invalid input.Please marks within range(0-100)\n");
             }else{
                 break;
@@ -101,6 +95,7 @@ for (int i=0;i<4;i++){
     }
     return sum/4;
 }
+
 int main() {
     float averagePhysics = Get_averagePhysics();
     printf("Physics average is %.2f\n",averagePhysics);
@@ -109,8 +104,6 @@ int main() {
     float averageMathematics = Get_averageMathematics();
     printf("Chemistry average is %.2f\n",averageMathematics);
     float overall_average = (averagePhysics + averageChemistry + averageMathematics )/3;
-
-
     printf("\nThe overall average for PCM is %.2f",overall_average);
     return 0;
 }
