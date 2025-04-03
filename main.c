@@ -40,8 +40,10 @@ float Get_averagePhysics(){
 for (int i=0;i<4;i++){
     while(1){
         printf("%s: ",exams[i]);
-        scanf("%f",&physics[i]);
-            if (physics[i]<0 || physics[i]>100){
+        if (!scanf("%f",&physics[i])){
+            scanf("%*[^\n]");
+            printf("Invalid input.");
+        }else if (physics[i]<0 || physics[i]>100){
                 printf("Invalid input.Please enter marks within range(0-100)  \n");
             }else{
                 break;
@@ -61,8 +63,10 @@ float Get_averageChemistry(){
 for (int i=0;i<4;i++){
     while(1){
         printf("%s: ",exams[i]);
-        scanf("%f",&chemistry[i]);
-        if (chemistry[i]<0|| chemistry[i]>100){
+        if(!scanf("%f",&chemistry[i])){
+            scanf("%*[^\n]");
+            printf("Invalid input.");
+        }else if (chemistry[i]<0|| chemistry[i]>100){
                 printf("Invalid input.Please marks within range(0-100)\n");
             }else{
                 break;
@@ -82,8 +86,10 @@ float Get_averageMathematics(){
 for (int i=0;i<4;i++){
     while(1){
         printf("%s: ",exams[i]);
-        scanf("%f",&mathematics[i]);
-        if (mathematics[i]<0|| mathematics[i]>100){
+        if (!scanf("%f",&mathematics[i])){
+            scanf("%*[^\n]");
+            printf("Invalid input.");
+        }else if (mathematics[i]<0|| mathematics[i]>100){
                 printf("Invalid input.Please marks within range(0-100)\n");
             }else{
                 break;
