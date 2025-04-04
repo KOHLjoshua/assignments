@@ -1,0 +1,328 @@
+import time
+from datetime import datetime # This enables  us use the time stamps. Python has a module for time and date functionality
+from collections import deque # I used the collections module because why not, its already defined.
+
+MAX_ACCOUNTS = 10 #The two global variables are important because they give a frame to work in.
+MAX_TRANSACTIONS = 10 #There fore the lists will only store ten accounts and ten transactions. Why, because thats what we want.
+
+# Node for linked list implementation. You knw that to implement a linkedlist, you always need to descride the node first.
+# the linkedlist below is a class implementation of linked list.
+# So we are going to store the customers in terms of nodes in a LL.
+class CustomerNode:
+    def __init__(self, customer_data):
+        self.data = customer_data
+        self.next = None
+
+# Linked List for customer management. The customers are stored in a linkedlist. Why, because it was the only way of applying the data struture.
+# in actual banking programmes, they use data bases but us, Darling said we use data strutures. {Am hoping you know how to implement a linked list in c++}
+class CustomerLinkedList:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+        self.account_map = {}  # this is to include hash maps, theyare used for searching if you are looking.. HASH MAPS are implemented using dictionaries in python. i used AI to get it so dont ask many questions.
+    
+    def add_customer(self, customer_data):
+        new_node = CustomerNode(customer_data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+        
+        # it does something connecting to updating the map, In this line i am not sure whats happening internally though 
+        # I get it now, for every new node we craete for a customer, we store their key in the hash map. 
+        self.account_map[customer_data.accountNo] = new_node
+        self.size += 1
+    
+    def find_customer(self, account_no):
+        return self.account_map.get(account_no, None)
+
+# Stack for transaction history. thes stack stores and updates the transactions in a list/array with a time stamp.
+# Below are the ways class based stacks are implemented in python. within it, we use the global varible for MAX_TRANSACTIONS.
+class TransactionStack:
+    def __init__(self):
+        self.stack = []
+        self.size = 0
+    
+    def push(self, amount, timestamp):
+        if self.size < MAX_TRANSACTIONS:
+            self.stack.append((amount, timestamp))
+            self.size += 1
+        else:
+            print("Transaction history is full")
+    
+    def pop(self):
+        if self.size > 0:
+            self.size -= 1
+            return self.stack.pop()
+        print("No transactions to pop")
+        return None
+    
+    def display(self):
+        if not self.stack:
+            print("No transactions")
+            return
+        
+        print("\nTransaction History (Recent First):")
+        for amount, timestamp in reversed(self.stack):
+            if amount < 0:
+                print(f"Withdraw {-amount} Ush on {timestamp}")
+            else:
+                print(f"Deposit {amount} Ush on {timestamp}")
+
+# Queue for pending transactions. Why is this important? I dont know but AI suggested it.
+class TransactionQueue:
+    def __init__(self):
+        self.queue = deque()
+    
+    def enqueue(self, transaction):
+        self.queue.append(transaction)
+    
+    def dequeue(self):
+        if self.queue:
+            return self.queue.popleft()
+        return None
+    
+    def process_next(self):
+        transaction = self.dequeue()
+        if transaction:
+            account_no, amount = transaction
+            print(f"Processing queued transaction: Account {account_no}, Amount {amount}")
+            return transaction
+        print("No pending transactions")
+        return None
+    
+
+# Customer information class helps us store details from the customer; name phone and anyother bs
+# If you have anymore information to add, we shall talk in git hub.
+class CustomerInfo:
+    def __init__(self, accountNo=0, lastName="", firstName="", address="", phone="", email="", balance=0, pin=0):
+        self.accountNo = accountNo
+        self.lastName = lastName
+        self.firstName = firstName
+        self.address = address
+        self.phone = phone
+        self.email = email
+        self.balance = balance
+        self.pin = pin
+        self.transactions = TransactionStack() #Now this variable will store TRANSACTIONS under that particular person becauseits important.
+
+
+# In the MAIN FUNCTION we describe the flow and logic of the code, what comes first, who fetches who, who holds who. Which class do we call and close.
+# this is where the true programmers stand out. LOGIC. 
+
+"""In an informative summary, the code above, [the classes], are the operations the program should be be to perform,
+now below is how these programmes are going to run. what is diplayed first, second and last.
+So lets get to it."""
+
+def main(): # One thing is that we should know that the program is about choices, choose this and that. If not that, try again. So we expect alot of if statements and while loops.
+    customers = CustomerLinkedList() #we created an object called customers, pending_transcations and sample_customers
+    pending_transactions = TransactionQueue()
+    
+    # We are going to initialize with some sample data below, this data will help test the program for now.
+    # so this below is just a list storing sample data called instances in the class 'customerinfor()' 
+    sample_customers = [
+        CustomerInfo(12341, "Trevor", "Bwami", "KIBULI", "0761959801", "trevor@gmail.com", 10000, 1111),
+        CustomerInfo(12342, "kodete", "hillary", "Bukasa", "0761959802", "hillary@gmail.com", 10000, 2222),
+        CustomerInfo(12343, "Natume", "Jolie", "isabt", "0761959803", "natume@gmail.com", 10000, 3333),
+        CustomerInfo(12344, "juliana", "tonidenka", "Rubaga", "0761959804", "tonidenka@gmail.com", 10000, 4444)
+    ]
+    
+    for customer in sample_customers:
+        customers.add_customer(customer) # this line helps us add a customer to the customer linkedlist.
+    
+    while True: #this defines the operations and how they will be run. its like our welcome page but in the back end
+        print("\n______Welcome to GAKYALIMABAGA_____")
+        print("1. Register New User// 1.--> Oyagalaku registering")
+        print("2. LogIn Existing Account// 2.--> Yingila account yoo")
+        print("3. Process Pending Transactions (Admin)// 3.--> Plocessing tualsaction")
+        print("4. Exit// 4.--> Fuluma account")
+        # Below we handle the choices by the user. remeber its all about loops and 
+        try:
+            choice = int(input("Enter your choice: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+        
+        if choice == 1:  # The 1st choice is to Register a new user, but this new user has to create an account so we shall have classes above handle that.
+            if customers.size >= MAX_ACCOUNTS:
+                print("Maximum number of accounts reached!")
+                continue
+                
+            new_customer = CustomerInfo()
+            
+            print("Enter Your Full Name (Last First): ")
+            names = input().split(maxsplit=1)
+            new_customer.lastName = names[0]
+            new_customer.firstName = names[1] if len(names) > 1 else ""
+            
+            print("Enter Your Address: ")
+            new_customer.address = input()
+            
+            print("Enter phone Number: ")
+            new_customer.phone = input()
+            
+            print("Enter Email: ")
+            new_customer.email = input()
+            
+            while True:
+                print("Enter a 4 digit pin: ")
+                pin = input()
+                print("Confirm Your Pin: ")
+                pin2 = input()
+                
+                if pin == pin2 and pin.isdigit() and len(pin) == 4:
+                    new_customer.pin = int(pin)
+                    break
+                print("Pins don't match or invalid format. Try again.")
+            
+            # Generate new account number
+            last_account = customers.head
+            while last_account and last_account.next:
+                last_account = last_account.next
+            new_customer.accountNo = last_account.data.accountNo + 1 if last_account else 12345
+            
+            customers.add_customer(new_customer)
+            
+            print("\nYour account Info:")
+            print(f"Account Number: {new_customer.accountNo}")
+            print(f"Name: {new_customer.lastName} {new_customer.firstName}")
+            print(f"Address: {new_customer.address}")
+            print(f"Phone Number: {new_customer.phone}")
+            print(f"Email: {new_customer.email}")
+            print(f"Balance: UGX {new_customer.balance}")
+        
+        elif choice == 2:  # Login
+            try:
+                account_number = int(input("Account No.: "))
+            except ValueError:
+                print("Invalid account number format.")
+                continue
+            
+            customer_node = customers.find_customer(account_number)
+            if not customer_node:
+                print("INVALID ACCOUNT NUMBER!")
+                continue
+            
+            try:
+                pin_code = int(input("Enter PIN: "))
+            except ValueError:
+                print("Invalid PIN format.")
+                continue
+            
+            if pin_code != customer_node.data.pin:
+                print("INVALID PIN!")
+                continue
+            
+            print(f"Welcome {customer_node.data.firstName}")
+            current_customer = customer_node.data
+            
+            while True:
+                print("\nSelect an option to proceed.")
+                print("1. Account Deposit")
+                print("2. Withdraw")
+                print("3. Account Statement")
+                print("4. Check Balance")
+                print("5. Queue Transaction for Later")
+                print("6. Log Out")
+                
+                try:
+                    selection = int(input("Enter your choice: "))
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+                    continue
+                
+                if selection == 1:  # Deposit
+                    try:
+                        amount = int(input("Enter Amount: "))
+                    except ValueError:
+                        print("Invalid amount.")
+                        continue
+                    
+                    if amount > 0:
+                        current_customer.balance += amount
+                        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        current_customer.transactions.push(amount, timestamp)
+                        print(f"Deposit of {amount} was successful on {timestamp}")
+                        print(f"New Balance: {current_customer.balance}")
+                    else:
+                        print("Amount must be positive")
+                
+                elif selection == 2:  # Withdraw
+                    try:
+                        amount = int(input("Enter Amount: "))
+                    except ValueError:
+                        print("Invalid amount.")
+                        continue
+                    
+                    if amount <= 0:
+                        print("Amount must be positive")
+                    elif amount > current_customer.balance:
+                        print("Insufficient balance")
+                    else:
+                        current_customer.balance -= amount
+                        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        current_customer.transactions.push(-amount, timestamp)
+                        print(f"Withdrawal of {amount} was successful on {timestamp}")
+                        print(f"New Balance: {current_customer.balance}")
+                
+                elif selection == 3:  # Statement
+                    current_customer.transactions.display()
+                
+                elif selection == 4:  # Check Balance
+                    print(f"Current Balance: {current_customer.balance}")
+                
+                elif selection == 5:  # Queue transaction
+                    try:
+                        amount = int(input("Enter Amount (positive for deposit, negative for withdrawal): "))
+                    except ValueError:
+                        print("Invalid amount.")
+                        continue
+                    
+                    pending_transactions.enqueue((current_customer.accountNo, amount))
+                    print("Transaction queued for later processing")
+                
+                elif selection == 6:  # Logout
+                    break
+                
+                else:
+                    print("Invalid selection")
+        
+        elif choice == 3:  # Admin - process pending transactions
+            print("\nProcessing Pending Transactions:")
+            while True:
+                result = pending_transactions.process_next()
+                if not result:
+                    break
+                
+                account_no, amount = result
+                customer_node = customers.find_customer(account_no)
+                if not customer_node:
+                    print(f"Account {account_no} not found. Transaction cancelled.")
+                    continue
+                
+                if amount > 0:  # Deposit
+                    customer_node.data.balance += amount
+                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    customer_node.data.transactions.push(amount, timestamp)
+                    print(f"Deposited {amount} to account {account_no}")
+                else:  # Withdrawal
+                    if customer_node.data.balance < abs(amount):
+                        print(f"Insufficient balance in account {account_no}. Transaction cancelled.")
+                    else:
+                        customer_node.data.balance += amount  # amount is negative
+                        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        customer_node.data.transactions.push(amount, timestamp)
+                        print(f"Withdrew {-amount} from account {account_no}")
+        
+        elif choice == 4:  # Exit
+            print("Thank you for using GAKYALIMABAGA. Goodbye!")
+            break
+        
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
