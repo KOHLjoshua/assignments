@@ -135,9 +135,9 @@ def main(): # One thing is that we should know that the program is about choices
     
     while True: #this defines the operations and how they will be run. its like our welcome page but in the back end
         print("\n______Welcome to GAKYALIMABAGA_____")
-        print("1. Register New User// 1.--> Oyagalaku registering")
-        print("2. LogIn Existing Account// 2.--> Yingila account yoo")
-        print("3. Process Pending Transactions (Admin)// 3.--> Plocessing tualsaction")
+        print("1. Register New User___ 1.--> Oyagalaku re gistering")
+        print("2. LogIn Existing Account___ 2.--> Yingila account yoo")
+        print("3. Process Pending Transactions (Admin)___3.--> Plocessing tualsaction")
         print("4. Exit// 4.--> Fuluma account")
         # Below we handle the choices by the user. remeber its all about loops and 
         try:
@@ -151,7 +151,7 @@ def main(): # One thing is that we should know that the program is about choices
                 print("Maximum number of accounts reached!")
                 continue
                 
-            new_customer = CustomerInfo()
+            new_customer = CustomerInfo()#this enables get the class for information oon the client.
             
             print("Enter Your Full Name (Last First): ")
             names = input().split(maxsplit=1)
@@ -167,7 +167,7 @@ def main(): # One thing is that we should know that the program is about choices
             print("Enter Email: ")
             new_customer.email = input()
             
-            while True:
+            while True:#we get the users pin number into the system
                 print("Enter a 4 digit pin: ")
                 pin = input()
                 print("Confirm Your Pin: ")
@@ -178,7 +178,7 @@ def main(): # One thing is that we should know that the program is about choices
                     break
                 print("Pins don't match or invalid format. Try again.")
             
-            # Generate new account number
+            # Generate new account number into the linked list we created above
             last_account = customers.head
             while last_account and last_account.next:
                 last_account = last_account.next
@@ -186,7 +186,7 @@ def main(): # One thing is that we should know that the program is about choices
             
             customers.add_customer(new_customer)
             
-            print("\nYour account Info:")
+            print("\nYour account Info//Infomation yo:")
             print(f"Account Number: {new_customer.accountNo}")
             print(f"Name: {new_customer.lastName} {new_customer.firstName}")
             print(f"Address: {new_customer.address}")
@@ -194,7 +194,7 @@ def main(): # One thing is that we should know that the program is about choices
             print(f"Email: {new_customer.email}")
             print(f"Balance: UGX {new_customer.balance}")
         
-        elif choice == 2:  # Login
+        elif choice == 2:  # Login choice, where user already has an account
             try:
                 account_number = int(input("Account No.: "))
             except ValueError:
@@ -221,12 +221,12 @@ def main(): # One thing is that we should know that the program is about choices
             
             while True:
                 print("\nSelect an option to proceed.")
-                print("1. Account Deposit")
-                print("2. Withdraw")
-                print("3. Account Statement")
-                print("4. Check Balance")
-                print("5. Queue Transaction for Later")
-                print("6. Log Out")
+                print("1. Account Deposit___OTEKAKO SENTE")
+                print("2. Withdraw____OJAKO SENTE")
+                print("3. Account Statement___SITETIMENTI")
+                print("4. Check Balance___OZIGAZAKO MEKA")
+                print("5. Pending transactions....")
+                print("6. Log Out___TEWALIKYAKULESE..")
                 
                 try:
                     selection = int(input("Enter your choice: "))
@@ -250,17 +250,17 @@ def main(): # One thing is that we should know that the program is about choices
                     else:
                         print("Amount must be positive")
                 
-                elif selection == 2:  # Withdraw
+                elif selection == 2:  # Withdrawing money from the accouont. 
                     try:
-                        amount = int(input("Enter Amount: "))
+                        amount = int(input("Enter Amount///Oyagala meka: "))
                     except ValueError:
                         print("Invalid amount.")
                         continue
                     
                     if amount <= 0:
-                        print("Amount must be positive")
+                        print("Amount must be sensible")
                     elif amount > current_customer.balance:
-                        print("Insufficient balance")
+                        print("Insufficient balance____TOYINA Mu. WA GWAMU")
                     else:
                         current_customer.balance -= amount
                         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -290,7 +290,7 @@ def main(): # One thing is that we should know that the program is about choices
                 else:
                     print("Invalid selection")
         
-        elif choice == 3:  # Admin - process pending transactions
+        elif choice == 3:  # Admin - process pending transactions... if the system is messed up. But also dont get this well cuase ai suggested it in the code.
             print("\nProcessing Pending Transactions:")
             while True:
                 result = pending_transactions.process_next()
@@ -303,9 +303,9 @@ def main(): # One thing is that we should know that the program is about choices
                     print(f"Account {account_no} not found. Transaction cancelled.")
                     continue
                 
-                if amount > 0:  # Deposit
+                if amount > 0:  # Deposit money onto account
                     customer_node.data.balance += amount
-                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")#here we finally use the time module
                     customer_node.data.transactions.push(amount, timestamp)
                     print(f"Deposited {amount} to account {account_no}")
                 else:  # Withdrawal
@@ -319,10 +319,11 @@ def main(): # One thing is that we should know that the program is about choices
         
         elif choice == 4:  # Exit
             print("Thank you for using GAKYALIMABAGA. Goodbye!")
+            print("Webalenyo, webale nyo kale nolula okolnagawotyo.>_<")
             break
         
         else:
-            print("Invalid choice. Please try again.")
+            print("Wrong. Please, try again...Choose a number its not that hard")
 
 if __name__ == "__main__":
     main()
