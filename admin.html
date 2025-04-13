@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+    <h2>Admin Dashboard</h2>
+    <p>Pending Transactions: {{ queue_length }}</p>
+    
+    <form method="POST" action="{{ url_for('process_transactions') }}">
+        <button type="submit">Process Next Transaction</button>
+    </form>
+{% endblock %}

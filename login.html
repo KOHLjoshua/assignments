@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h2>Login to Your Account</h2>
+    <form method="POST">
+        <div>
+            <label for="accountNo">Account Number:</label>
+            <input type="number" id="accountNo" name="accountNo" required>
+        </div>
+        <div>
+            <label for="pin">PIN:</label>
+            <input type="password" id="pin" name="pin" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}
